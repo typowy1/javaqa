@@ -40,6 +40,8 @@
  *.iml
  *.ipr
  .idea
+ .Komendy i polecane programy .txt
+ .git ignore.txt
 
 
 # CMake
