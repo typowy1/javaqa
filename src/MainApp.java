@@ -1,37 +1,21 @@
 public class MainApp {
 
     public static void main(String[] args) {
-//        typy danych
 
-//        Liczby całkowite
-        byte b;
-        short s;
-        int i;
-        long l;
+        User rafal = new User();
+        rafal.fistName = "Bartek";
+        rafal.lastName = "Testowy";
+        rafal.email = "bartek@test.pl";
+        rafal.age = 17;
+        rafal.isAdult = false;
+        System.out.println(rafal.fistName);
 
-        int number10 = 10; //deklaracja zmiennej = inicjalizacja zmiennej
-        System.out.println(number10);
-
-
-//        l zmiennoprzecinkowe
-        float f;
-        double doubleNumber = 10.5;
-        System.out.println(doubleNumber);
-
-//        text
-        String someText = "dd";
-        System.out.println(someText);
-
-//        znak
-        char someChar = 'f';
-        System.out.println(someChar);
-
-//        prawda
-        boolean trueValue = true;
-        System.out.println(trueValue);
-
-//        fałsz
-        boolean falseValue = false;
-        System.out.println(falseValue);
+        User tomek = new User();
+        tomek.fistName = "Tomek";
+        tomek.lastName = "Testowy";
+        tomek.email = "tomek@test.pl";
+        tomek.age = 30;
+        tomek.isAdult = true;
+        System.out.println(tomek.fistName);
     }
 }
