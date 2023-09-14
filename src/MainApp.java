@@ -2,20 +2,15 @@ public class MainApp {
 
     public static void main(String[] args) {
 
-        User rafal = new User();
-        rafal.fistName = "Bartek";
-        rafal.lastName = "Testowy";
-        rafal.email = "bartek@test.pl";
-        rafal.age = 17;
-        rafal.isAdult = false;
-        System.out.println(rafal.fistName);
+        // tworzymy obiekt przez wywołanie konstruktora, jeśli nie utworzymy konstruktora to zostanie utworzony domyślny
 
-        User tomek = new User();
-        tomek.fistName = "Tomek";
-        tomek.lastName = "Testowy";
-        tomek.email = "tomek@test.pl";
-        tomek.age = 30;
-        tomek.isAdult = true;
-        System.out.println(tomek.fistName);
+        User rafal = new User("Rafal", "Testowy", "bartek@test.pl", 17);
+        rafal.getAllInfo();
+
+        User tomek = new User("Tomek", "Testowy1", "tomek@test.pl", 30);
+        tomek.getAllInfo();
+
+
+
     }
 }
