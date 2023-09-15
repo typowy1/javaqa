@@ -1,0 +1,110 @@
+package model;
+
+public class User {
+    //    1, pola obiektu opisuja z czego bedzie skladal sie obiekt
+    // domyślne wartości
+    private String fistName;// null
+    private String lastName;// null
+    private String email;// null
+    private int age; //0
+    private boolean isAdult;//false
+
+//    konstruktor,
+//    zawsze z dużej,
+//    ta sama nazwa co klasa,
+//    nie ma zwracanego typu,
+//    jak nie zdefiniujemy konstruktora to bedzie działał domyślny
+
+    public User(String fistName, String lastName, String email, int age) {
+        this.fistName = fistName;
+        this.lastName = lastName;
+        this.email = email;
+        this.age = age;
+        this.isAdult = isUserAdult();
+    }
+
+    public String getFistName() {
+        return fistName;
+    }
+
+    public void setFistName(String fistName) {
+        this.fistName = fistName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        if (email.endsWith(".ru")) {
+            System.out.println("RU emails are not allowed");
+        } else {
+            this.lastName = lastName;
+        }
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public boolean isAdult() {
+        return isAdult;
+    }
+
+    public void setAdult(boolean adult) {
+        isAdult = adult;
+    }
+
+//   2. Metody - opisuja to co z danym obiektem będziemy mogli robić
+
+    //metoda składa się z zwracanego typu i nazey metody
+    public void getFullName() { //void typ który nic nie zwracam w tym wypadku wyświetla
+        System.out.println(fistName + " " + lastName);
+    }
+
+    public void getAllInfo() {
+        System.out.println(fistName + " " + lastName + " " + email + " " + age + " " + isAdult);
+    }
+
+    public int getUserAge() {
+        return age;
+    }
+
+    public boolean isUserAdult() { // przy boolen dobrze zaczynac nazwe metody od is
+        if (age >= 18) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    //    przeciążanie metod, metoda ta sama nazwa, różne typy parametry, różna liczba parametrów
+    public void greetings(String name) {
+        System.out.println("Hi " + name + ". Nice to see you");
+    }
+
+    public void greetings(String firstName, String lastName) {
+        System.out.println("Hi " + firstName + " " + lastName + ". Nice to see you");
+    }
+
+    public void howOldAreYou(String name, int userAge) {
+        System.out.println("Hi " + name + " you are " + userAge + " years old");
+    }
+
+    public int yourAgePlusTen(int userAge) {
+        return userAge + 10;
+    }
+
+}
