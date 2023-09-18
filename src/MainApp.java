@@ -1,4 +1,6 @@
 import model.User;
+import utils.StringUtils;
+import utils.WeekUtils;
 
 public class MainApp {
 
@@ -12,7 +14,13 @@ public class MainApp {
         User tomek = new User("Tomek", "Testowy1", "tomek@test.pl", 30);
         tomek.getAllInfo();
 
+        System.out.println(User.getUserCounter());
 
+
+        String text = StringUtils.getFormattedText("ddjkdjdbvjhvvjv");
+        System.out.println(text);
+
+        System.out.println(WeekUtils.MONDAY);
 
     }
 }

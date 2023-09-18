@@ -8,6 +8,9 @@ public class User {
     private String email;// null
     private int age; //0
     private boolean isAdult;//false
+    //   statyczne pole lub metoda które należą do klasy, nie do obiektu
+    private static int userCounter = 0;
+
 
 //    konstruktor,
 //    zawsze z dużej,
@@ -21,7 +24,9 @@ public class User {
         this.email = email;
         this.age = age;
         this.isAdult = isUserAdult();
+        userCounter++;
     }
+
 
     public String getFistName() {
         return fistName;
@@ -105,6 +110,12 @@ public class User {
 
     public int yourAgePlusTen(int userAge) {
         return userAge + 10;
+    }
+
+    //    metody statyczne, naleza do klasy, nie do obiektu
+    //metody statyczne, metody pomocnicze
+    public static int getUserCounter() {
+        return userCounter;
     }
 
 }
