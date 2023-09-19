@@ -1,12 +1,17 @@
 package model.computer;
 
-public class Computer {
+abstract public class Computer {
+//    klasa abstrakcyjna, jakoś opisuje komputer ale nie jest to żaden konkretny komputer,
+//    podklasy będą mogły dziedziczyć po tej klasiemm sama ta klasa nie służy do tworzenia obiektu.
+//    Nie możemy utworzyć obiektu, służy do generalnego opisu z czgo będzie się składał obiekt i jakie metody będzie posiadał
 
     protected String name;
     protected String type;
     protected int hdd;
     protected int ram;
     protected boolean state;
+    protected int volumeLevel;
+
 
     public Computer(String name, String type, int hdd, int ram) {
         this.name = name;
@@ -14,6 +19,7 @@ public class Computer {
         this.hdd = hdd;
         this.ram = ram;
         this.state = false;
+        this.volumeLevel = 0;
     }
 
     public String getName() {
@@ -53,11 +59,24 @@ public class Computer {
     }
 
     public void switchOff() {
+        System.out.println("Wyłącz komputer: " + name);
         state = false;
     }
 
     public boolean getState() {
         return state;
     }
+    public int getVolumeLevel() {
+        return volumeLevel;
+    }
+
+    public abstract int volumeUp(); // metody abstrakcyjne nie maja ciała czyli {}, jest to tylko szkic,
+    // metoda zawsze musi być publiczna
+
+    public abstract int volumeDown();
+
+    public abstract int volumeUp(int newVolumeLevel);
+
+    public abstract int volumeDown(int newVolumeLevel);
 
 }
