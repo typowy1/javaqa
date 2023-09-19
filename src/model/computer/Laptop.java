@@ -1,6 +1,7 @@
 package model.computer;
 
-public class Laptop extends Computer {
+public class Laptop extends Computer implements Music, Video {
+    //    klasa może implementować wiele interfrjsów
 
     private int batteryLevel;
 
@@ -61,5 +62,41 @@ public class Laptop extends Computer {
 
     public void setBatteryLevel(int newBatteryLevel) {
         batteryLevel = newBatteryLevel;
+    }
+
+    @Override
+    public void playMusic() {
+        System.out.println("Play music");
+    }
+
+    @Override
+    public void pauseMusic() {
+        System.out.println("pause music");
+    }
+
+    @Override
+    public void stopMusic() {
+        System.out.println("Stop music");
+
+    }
+
+    @Override
+    public void sayHelloFrom() {
+        Music.super.sayHelloFrom();
+    }
+
+    @Override
+    public void playVideo() {
+        System.out.println("Play video");
+    }
+
+    @Override
+    public void pauseVideo() {
+        System.out.println("Pause music");
+    }
+
+    @Override
+    public void stopVideo() {
+        System.out.println("Stop music");
     }
 }

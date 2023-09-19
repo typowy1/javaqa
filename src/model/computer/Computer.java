@@ -11,8 +11,8 @@ abstract public class Computer {
     protected int ram;
     protected boolean state;
     protected int volumeLevel;
-
-
+//pola obiektu opisuja stan obiektu
+// metody opisuja zachowanie
     public Computer(String name, String type, int hdd, int ram) {
         this.name = name;
         this.type = type;
