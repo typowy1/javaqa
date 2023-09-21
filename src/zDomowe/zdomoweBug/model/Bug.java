@@ -1,6 +1,8 @@
 package zDomowe.zdomoweBug.model;
 
-public class Bug {
+import java.util.Objects;
+
+public class Bug  implements ConsoleNotification{
 //    pola obiektu:
 //    opis błędu
 //    adres email osoby zgłaszajacej błąd
@@ -15,47 +17,44 @@ public class Bug {
 //    pokaż status błędu
 //    zwróć priorytet błędu
 
-    private String bugDescription;
-    private String reportingPersonEmail;
-    private int bugPriority;
-    private boolean bugStatus;
+    private String description;
+    private BugReporter reporter;
+    private int priority;
+    private boolean status;
 
-    public Bug(String bugDescription, String reportingPersonEmail, int bugPriority) {
-        this.bugDescription = bugDescription;
-        this.reportingPersonEmail = reportingPersonEmail;
-        this.bugPriority = bugPriority;
-        this.bugStatus = false;
+    public Bug(String description, BugReporter reporter, int priority) {
+        this.description = description;
+        this.reporter = reporter;
+        this.priority = priority;
+        this.status = false;
     }
 
-    public String getBugDescription() {
-        return bugDescription;
+    public BugReporter getReporter() {
+        return reporter;
     }
 
-    public void setBugDescription(String bugDescription) {
-        if (bugDescription.length() < 10) {
+    public void setReporter(BugReporter reporter) {
+        this.reporter = reporter;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        if (description.length() < 10) {
             System.out.println("bugDescription can't be less than 10 chars"); //incorrect bug description
         } else {
-            this.bugDescription = bugDescription;
+            this.description = description;
         }
     }
 
-    public String getReportingPersonEmail() {
-        return reportingPersonEmail;
-    }
 
-    public void setReportingPersonEmail(String reportingPersonEmail) {
-        if (!reportingPersonEmail.contains("@")) {
-            System.out.println("wrong email, email should contains @");
-        } else {
-            this.reportingPersonEmail = reportingPersonEmail;
+    public void setPriority(int priority) {
+        if(priority < 1 || priority > 5){
+            System.out.println("Wrong bugPriority: '" + priority + "', you can chose from 1 to 5");
         }
-    }
-
-    public void setBugPriority(int bugPriority) {
-        if(bugPriority < 1 || bugPriority > 5){
-            System.out.println("Wrong bugPriority: '" + bugPriority + "', you can chose from 1 to 5");
-        }
-        this.bugPriority = bugPriority;
+        this.priority = priority;
     }
 //można z switch
 //    public void setBugPriority(int bugPriority) { // dla każdego przypadku robimy to samo wiec można zapisać jak poniżej
@@ -74,31 +73,64 @@ public class Bug {
 //
 //    }
 
-    public boolean isBugStatus() {
-        return bugStatus;
+    public boolean isStatus() {
+        return status;
     }
 
-    public void setBugStatus(boolean bugStatus) {
-        this.bugStatus = bugStatus;
+    public void setStatus(boolean status) {
+        notifyStatusChange(status);
+        this.status = status;
     }
 
     public void showAllInfo() {
-        System.out.println(bugDescription + ", " + reportingPersonEmail + ", " + bugPriority + ", " + bugStatus);
+        System.out.println(description + ", " + reporter + ", " + priority + ", " + status);
     }
 
     public void showReportingPersonEmail() {
-        System.out.println("Reporting person: " + reportingPersonEmail);
+        System.out.println("Reporting person: " + reporter);
     }
 
     public void showBugStatus() {
-        if (bugStatus == false) {
+        if (status == false) {
             System.out.println("Bug status: Otwarty");
         } else {
             System.out.println("Bug status: Zamknięty");
         }
     }
 
-    public int getBugPriority() {
-        return bugPriority;
+    public int getPriority() {
+        return priority;
+    }
+
+    @Override
+    public String toString() {
+        return "Bug{" +
+                "bugDescription='" + description + '\'' +
+                ", bugReporter=" + reporter +
+                ", bugPriority=" + priority +
+                ", bugStatus=" + status +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Bug bug = (Bug) o;
+        return priority == bug.priority && status == bug.status && Objects.equals(description, bug.description) && Objects.equals(reporter, bug.reporter);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(description, reporter, priority, status);
+    }
+
+    @Override
+    public void notifyStatusChange(boolean bugStatus) {
+        if (bugStatus == false) {
+            System.out.println("Status zmieniono na: Otwarty");
+        } else {
+            System.out.println("Status zmieniono na: Zamknięty");
+        }
     }
 }

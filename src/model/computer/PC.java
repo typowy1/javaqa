@@ -5,7 +5,7 @@ public class PC extends Computer {
     private boolean isPowerSupply;
 
 
-    public PC(String name, String type, int hdd, int ram) {
+    public PC(String name, String type, Hdd hdd, Ram ram) {
         super(name, type, hdd, ram); //słówko super odnsi się do klasy matki, czyli odnosi sie do konstruktora z klasy matki
         this.isPowerSupply = false;
     }

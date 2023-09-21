@@ -1,19 +1,21 @@
 package model.computer;
 
+import java.util.Objects;
+
 abstract public class Computer {
 //    klasa abstrakcyjna, jakoś opisuje komputer ale nie jest to żaden konkretny komputer,
 //    podklasy będą mogły dziedziczyć po tej klasiemm sama ta klasa nie służy do tworzenia obiektu.
 //    Nie możemy utworzyć obiektu, służy do generalnego opisu z czgo będzie się składał obiekt i jakie metody będzie posiadał
 
-    protected String name;
+    protected String name; //IS a dziedziczenie
     protected String type;
-    protected int hdd;
-    protected int ram;
+    protected Hdd hdd; // tu zachodzi relacja has A, komputer składa się z czegoś, kompozycja, więc trzeba dla tego pola założyć klasę
+    protected Ram ram; // tu zachodzi relacja has A, komputer składa się z czegoś, kompozycja, więc trzeba dla tego pola założyć klasę
     protected boolean state;
     protected int volumeLevel;
 //pola obiektu opisuja stan obiektu
 // metody opisuja zachowanie
-    public Computer(String name, String type, int hdd, int ram) {
+    public Computer(String name, String type, Hdd hdd, Ram ram) {
         this.name = name;
         this.type = type;
         this.hdd = hdd;
@@ -38,19 +40,19 @@ abstract public class Computer {
         this.type = type;
     }
 
-    public int getHdd() {
+    public Hdd getHdd() {
         return hdd;
     }
 
-    public void setHdd(int hdd) {
+    public void setHdd(Hdd hdd) {
         this.hdd = hdd;
     }
 
-    public int getRam() {
+    public Ram getRam() {
         return ram;
     }
 
-    public void setRam(int ram) {
+    public void setRam(Ram ram) {
         this.ram = ram;
     }
 
@@ -79,4 +81,28 @@ abstract public class Computer {
 
     public abstract int volumeDown(int newVolumeLevel);
 
+    @Override
+    public String toString() {
+        return "Computer{" +
+                "name='" + name + '\'' +
+                ", type='" + type + '\'' +
+                ", hdd=" + hdd +
+                ", ram=" + ram +
+                ", state=" + state +
+                ", volumeLevel=" + volumeLevel +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Computer computer = (Computer) o;
+        return state == computer.state && volumeLevel == computer.volumeLevel && Objects.equals(name, computer.name) && Objects.equals(type, computer.type) && Objects.equals(hdd, computer.hdd) && Objects.equals(ram, computer.ram);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, type, hdd, ram, state, volumeLevel);
+    }
 }

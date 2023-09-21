@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Objects;
+
 public class User {
     //    1, pola obiektu opisuja z czego bedzie skladal sie obiekt
     // domyślne wartości
@@ -118,4 +120,27 @@ public class User {
         return userCounter;
     }
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "fistName='" + fistName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", age=" + age +
+                ", isAdult=" + isAdult +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return age == user.age && isAdult == user.isAdult && Objects.equals(fistName, user.fistName) && Objects.equals(lastName, user.lastName) && Objects.equals(email, user.email);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(fistName, lastName, email, age, isAdult);
+    }
 }
