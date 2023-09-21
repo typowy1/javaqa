@@ -2,7 +2,7 @@ package model;
 
 import java.util.Objects;
 
-public class User {
+public class User implements Comparable<User> { // implements Comparable<User> do sortowania setów{
     //    1, pola obiektu opisuja z czego bedzie skladal sie obiekt
     // domyślne wartości
     private String fistName;// null
@@ -142,5 +142,14 @@ public class User {
     @Override
     public int hashCode() {
         return Objects.hash(fistName, lastName, email, age, isAdult);
+    }
+
+    @Override
+    public int compareTo(User user) {
+        int compareResult = this.getFistName().compareTo(user.getFistName()); // porównujemy 1 imie obecnego użytkownika z kolejnym użytkownikiem
+        if (compareResult == 0) { // jeżeli wartość jest równa 0 czyli pierwsze imiona są takie same, 1 to wieksze, -1 mniejsze
+            compareResult = this.getLastName().compareTo(user.getLastName()); //to porówmujemy nazwiska użytkowników
+        }
+        return compareResult;
     }
 }

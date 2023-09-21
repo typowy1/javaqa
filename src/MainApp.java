@@ -1,6 +1,4 @@
 import model.User;
-import utils.StringUtils;
-import utils.WeekUtils;
 
 public class MainApp {
 
