@@ -2,7 +2,7 @@ package zDomowe.zdomoweBug.model;
 
 import java.util.Objects;
 
-public class Bug  implements ConsoleNotification{
+public class Bug  implements ConsoleNotification, Comparable<Bug>{
 //    pola obiektu:
 //    opis błędu
 //    adres email osoby zgłaszajacej błąd
@@ -132,5 +132,11 @@ public class Bug  implements ConsoleNotification{
         } else {
             System.out.println("Status zmieniono na: Zamknięty");
         }
+    }
+
+    @Override
+    public int compareTo(Bug bug) {
+        int compareResult = this.getDescription().compareTo(bug.getDescription());
+        return compareResult;
     }
 }
