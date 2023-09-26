@@ -1,5 +1,8 @@
 import model.User;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MainApp {
 
     public static void main(String[] args) {
@@ -22,6 +25,9 @@ public class MainApp {
 //        System.out.println(text);
 //
 //        System.out.println(WeekUtils.MONDAY);
+
+        List<User> userList = new ArrayList<>();
+
 
     }
 }

@@ -36,7 +36,7 @@ public class BugReporter {
 
     public void setEmail(String  email) {
         if (!email.contains("@")) {
-            System.out.println("wrong email, email should contains @");
+            throw new IllegalArgumentException("wrong email, email should contains @");
         } else {
             this.email = email;
         }

@@ -1,5 +1,8 @@
 package model;
 
+import exceptions.IllegalEmailFormatException;
+import wiedza.enums.Gender;
+
 import java.util.Objects;
 
 public class User implements Comparable<User> { // implements Comparable<User> do sortowania setów{
@@ -12,6 +15,7 @@ public class User implements Comparable<User> { // implements Comparable<User> d
     private boolean isAdult;//false
     //   statyczne pole lub metoda które należą do klasy, nie do obiektu
     private static int userCounter = 0;
+    private Gender gender;
 
 
 //    konstruktor,
@@ -29,6 +33,26 @@ public class User implements Comparable<User> { // implements Comparable<User> d
         userCounter++;
     }
 
+    public User(String fistName, String lastName, String email, int age, Gender gender) {
+        this.fistName = fistName;
+        this.lastName = lastName;
+        this.email = email;
+        this.age = age;
+        this.isAdult = isUserAdult();
+        this.gender = gender;
+    }
+
+    public static void setUserCounter(int userCounter) {
+        User.userCounter = userCounter;
+    }
+
+    public Gender getGender() {
+        return gender;
+    }
+
+    public void setGender(Gender gender) {
+        this.gender = gender;
+    }
 
     public String getFistName() {
         return fistName;
@@ -54,8 +78,12 @@ public class User implements Comparable<User> { // implements Comparable<User> d
         return email;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setEmail(String email) throws IllegalEmailFormatException { // throws IllegalEmailFormatException dobra praktyka podanie w sygnaturze metody informacji o tym ze rzucamy wyjątkiem
+        if (!email.contains("@")) {
+                throw new IllegalEmailFormatException("Podałeś niepoptawny format adresu email");
+            } else {
+                this.email = email;
+            }
     }
 
     public int getAge() {
@@ -121,6 +149,19 @@ public class User implements Comparable<User> { // implements Comparable<User> d
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return age == user.age && isAdult == user.isAdult && Objects.equals(fistName, user.fistName) && Objects.equals(lastName, user.lastName) && Objects.equals(email, user.email) && gender == user.gender;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(fistName, lastName, email, age, isAdult, gender);
+    }
+
+    @Override
     public String toString() {
         return "User{" +
                 "fistName='" + fistName + '\'' +
@@ -128,20 +169,8 @@ public class User implements Comparable<User> { // implements Comparable<User> d
                 ", email='" + email + '\'' +
                 ", age=" + age +
                 ", isAdult=" + isAdult +
+                ", gender=" + gender +
                 '}';
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
-        return age == user.age && isAdult == user.isAdult && Objects.equals(fistName, user.fistName) && Objects.equals(lastName, user.lastName) && Objects.equals(email, user.email);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(fistName, lastName, email, age, isAdult);
     }
 
     @Override

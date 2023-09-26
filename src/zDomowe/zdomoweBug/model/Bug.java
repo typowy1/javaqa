@@ -1,5 +1,7 @@
 package zDomowe.zdomoweBug.model;
 
+import exceptions.IllegalBugPriorityException;
+
 import java.util.Objects;
 
 public class Bug  implements ConsoleNotification, Comparable<Bug>{
@@ -50,28 +52,28 @@ public class Bug  implements ConsoleNotification, Comparable<Bug>{
     }
 
 
-    public void setPriority(int priority) {
-        if(priority < 1 || priority > 5){
-            System.out.println("Wrong bugPriority: '" + priority + "', you can chose from 1 to 5");
-        }
-        this.priority = priority;
-    }
-//można z switch
-//    public void setBugPriority(int bugPriority) { // dla każdego przypadku robimy to samo wiec można zapisać jak poniżej
-//        switch (bugPriority) {
-//            case 1:
-//            case 2:
-//            case 3:
-//            case 4:
-//            case 5:
-//                this.bugPriority = bugPriority;
-//                break;
-//            default: {
-//                System.out.println("incorrect bug priority range");
-//            }
+//    public void setPriority(int priority) {
+//        if(priority < 1 || priority > 5){
+//            System.out.println("Wrong bugPriority: '" + priority + "', you can chose from 1 to 5");
 //        }
-//
+//        this.priority = priority;
 //    }
+//można z switch
+    public void setBugPriority(int bugPriority) throws IllegalBugPriorityException{ // dla każdego przypadku robimy to samo wiec można zapisać jak poniżej
+        switch (bugPriority) {
+            case 1:
+            case 2:
+            case 3:
+            case 4:
+            case 5:
+                this.priority = bugPriority;
+                break;
+            default: {
+                throw new IllegalBugPriorityException("Wrong bug pririty");
+            }
+        }
+
+    }
 
     public boolean isStatus() {
         return status;
